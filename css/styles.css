@@ -21,12 +21,21 @@ div {
 section {
   display : grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap : 10px;
 }
 
-@media all and (max-width: 500px) {
-  div {
+@media all and (max-width: 499px) {
+  section {
     display : grid;
     grid-template-columns: 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
     }
   }
+
+@media all and (min-width : 500px) and (max-width: 800px) {
+  section {
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 7px;
+      }
+    }

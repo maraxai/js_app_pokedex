@@ -53,29 +53,30 @@ var pokemonRepository = (function() {
   ];
 
   function add(element) {
-    repository.push();
+    repository.push(element);
   }
 
   function getAll() {
     return repository;
   }
 
-  repository.forEach(function(element) {
-    if (element.height > 4.33) {
-      element.name =  (element.name + ' "Wow, that\'s big!"');
-    }
-    name = ['<h2>' + element.name + '</h2>'];
-    pic = ['<img src="img/' + element.number + '.png">'];
-    features = ('<ul>' +
+  return {
+    add: add,
+    getAll: getAll
+    };
+})();
+
+pokemonRepository.getAll().forEach(function(element) {
+  if (element.height > 4.33) {
+    element.name =  (element.name + ' "Wow, that\'s big!"');
+  }
+  name = ['<h2>' + element.name + '</h2>'];
+  pic = ['<img src="img/' + element.number + '.png">'];
+  features = ('<ul>' +
     '<li>' + 'height: ' + element.height +
     '<li>' + 'weight: ' + element.weight +
     '<li>' + 'category: ' + element.category +
     '<li>' + 'abilities: ' + element.abilities +
     '<li>' + 'types: ' + element.type + '</ul>');
-    document.write('<div>' + name + '<br>' + pic + '<br>' + features + '</div>');
-  });
-})();
-
-pokemonRepository.getAll(element).forEach(function(element) {
-  repository.addListItem(element);
+  document.write('<div>' + name + '<br>' + pic + '<br>' + features + '</div>');
 });
