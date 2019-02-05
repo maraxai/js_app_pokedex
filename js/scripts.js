@@ -1,6 +1,6 @@
 var pokemonRepository = (function() {
 
-  var repository = [
+  var pokemons = [
     {
       name : 'Bonsly',
       number : '438',
@@ -52,12 +52,30 @@ var pokemonRepository = (function() {
     }
   ];
 
-  function add(element) {
-    repository.push(element);
+  //function addListItem(pokemon) {
+function addListItem(pokemon) {
+  for (var i = 0; i < pokemon.length; i++) {
+    var $ul = document.querySelector('ul');
+    var $li = document.createElement('li');
+    $ul.appendChild($li);
+    var $btn = document.createElement('button');
+    $btn.classList.add('listButton');
+    $li.appendChild($btn);
+    $btn.innerText = pokemon[i].name;
+    $btn.addEventListener('click', showDetails(pokemon));
+    }
+}
+
+function showDetails(pokemon) {
+  console.log(pokemon);
+}
+
+  function add(pokemon) {
+    pokemons.push(pokemon);
   }
 
   function getAll() {
-    return repository;
+    return pokemons;
   }
 
   return {
@@ -66,17 +84,18 @@ var pokemonRepository = (function() {
     };
 })();
 
-pokemonRepository.getAll().forEach(function(element) {
-  if (element.height > 4.33) {
-    element.name =  (element.name + ' "Wow, that\'s big!"');
+pokemonRepository.getAll().forEach(function(pokemon) {
+  if (pokemon.height > 4.33) {
+    pokemon.name =  (pokemon.name + ' "Wow, that\'s big!"');
   }
-  name = ['<h2>' + element.name + '</h2>'];
-  pic = ['<img src="img/' + element.number + '.png">'];
+  name = ['<h2>' + pokemon.name + '</h2>'];
+  pic = ['<img src="img/' + pokemon.number + '.png">'];
   features = ('<ul>' +
-    '<li>' + 'height: ' + element.height +
-    '<li>' + 'weight: ' + element.weight +
-    '<li>' + 'category: ' + element.category +
-    '<li>' + 'abilities: ' + element.abilities +
-    '<li>' + 'types: ' + element.type + '</ul>');
-  document.write('<div>' + name + '<br>' + pic + '<br>' + features + '</div>');
+    '<li>' + 'height: ' + pokemon.height +
+    '<li>' + 'weight: ' + pokemon.weight +
+    '<li>' + 'category: ' + pokemon.category +
+    '<li>' + 'abilities: ' + pokemon.abilities +
+    '<li>' + 'types: ' + pokemon.type + '</ul>');
+  //document.write('<div>' + name + '<br>' + pic + '<br>' + features + '</div>');
+  pokemons.addListItem(pokemon);
 });
