@@ -1,3 +1,11 @@
+:root {
+  --bg-color-main : #008000;
+  --bg-color-white : #ffffff;
+  --font-color-green : #08000;
+  --font-color-white : #00cc00;
+  --font-color-white : #ffffff;
+}
+
 body {
   font-family : Montserrat;
 }
@@ -10,9 +18,9 @@ img {
   width : 20%;
 }
 
-div {
-  background-color : green;
-  color : white;
+.pokemonDetails {
+  background-color : var(--bg-color-white);
+  color : black;
   padding : 10px;
   margin : 10px;
   border-radius : 10px;
@@ -20,9 +28,50 @@ div {
 
 section {
   display : grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap : 10px;
+  background-color : var(--bg-color-main);
+  color : white;
+  padding : 10px;
+  margin : 10px;
+  border-radius : 10px;
 }
+
+
+
+ul {
+    list-style-type: none;
+}
+
+.listButton {
+  background-color: var(--bg-color-green);
+  color : var(--font-color-white);
+  margin : 1em;
+  padding : 5px;
+  width : 150px;
+  text-decoration : none;
+  border-radius : 8px;
+  border-width : 1px;
+  box-shadow : 2px 2px 3px 0px #000000;
+  cursor : pointer;
+  transition : 0.5s;
+ }
+
+ .listButton:hover {
+   background-color: var(--font-color-lightgreen);
+   color : var(--font-color-white);
+     }
+
+ .listButton:active  {
+   background-color: var(--bg-color-white);
+   color : black;
+ }
+
+ .listbutton:visited  {
+   background-color: var(--bg-color-white);
+   color : var(--font-color-green);
+ }
+
 
 @media all and (max-width: 499px) {
   section {

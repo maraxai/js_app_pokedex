@@ -52,22 +52,34 @@ var pokemonRepository = (function() {
     }
   ];
 
-  //function addListItem(pokemon) {
 function addListItem(pokemon) {
-  for (var i = 0; i < pokemon.length; i++) {
-    var $ul = document.querySelector('ul');
-    var $li = document.createElement('li');
-    $ul.appendChild($li);
-    var $btn = document.createElement('button');
-    $btn.classList.add('listButton');
-    $li.appendChild($btn);
-    $btn.innerText = pokemon[i].name;
-    $btn.addEventListener('click', showDetails(pokemon));
-    }
+  var $ul = document.querySelector('ul');
+  var $li = document.createElement('li');
+  $ul.appendChild($li);
+  var $btn = document.createElement('button');
+  $btn.classList.add('listButton');
+  $li.appendChild($btn);
+  $btn.innerText = pokemon.name;
+  var $section = document.querySelector('section');
+  $div = document.createElement('div');
+  $div.classList.add('pokemonDetails');
+  $section.appendChild($div);
+  $btn.addEventListener('click', function (event) {
+    showDetails();
+  $div.innerHTML = 'name: ' + pokemon.name + '<br>' +
+    '<img src="img/'+ pokemon.number + '.png" >' + '<br>' +
+    'number: ' + pokemon.number + '<br>' +
+    'height: ' + pokemon.height + '<br>' +
+    'weight: ' + pokemon.weight + '<br>' +
+    'category: ' + pokemon.category + '<br>' +
+    'abilities: ' + pokemon.abilities + '<br>' +
+    'type: ' + pokemon.type ;
+    console.log(pokemon.name);
+  });
 }
 
 function showDetails(pokemon) {
-  console.log(pokemon);
+   console.log(pokemon);
 }
 
   function add(pokemon) {
@@ -80,22 +92,12 @@ function showDetails(pokemon) {
 
   return {
     add: add,
-    getAll: getAll
-    };
+    getAll: getAll,
+    addListItem : addListItem
+    }
 })();
-
+/* this function is the gateway to the inner IIFE - for all records (getAll()) and each one of them (forEach())
+the method addListItem() is invoked*/
 pokemonRepository.getAll().forEach(function(pokemon) {
-  if (pokemon.height > 4.33) {
-    pokemon.name =  (pokemon.name + ' "Wow, that\'s big!"');
-  }
-  name = ['<h2>' + pokemon.name + '</h2>'];
-  pic = ['<img src="img/' + pokemon.number + '.png">'];
-  features = ('<ul>' +
-    '<li>' + 'height: ' + pokemon.height +
-    '<li>' + 'weight: ' + pokemon.weight +
-    '<li>' + 'category: ' + pokemon.category +
-    '<li>' + 'abilities: ' + pokemon.abilities +
-    '<li>' + 'types: ' + pokemon.type + '</ul>');
-  //document.write('<div>' + name + '<br>' + pic + '<br>' + features + '</div>');
-  pokemons.addListItem(pokemon);
+  pokemonRepository.addListItem(pokemon);
 });
