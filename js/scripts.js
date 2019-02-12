@@ -29,18 +29,21 @@ var pokemonRepository = (function() {
     it did not work and had to place it back here, no detail content if this code is missing*/
     $btn.addEventListener('click', function (event) {
       showDetails(pokemon);
-      $PokemonDiv.innerHTML = 'name: ' + pokemon.name + '<br>' +
+  /*    $PokemonDiv.innerHTML = 'name: ' + pokemon.name + '<br>' +
     '<img src="' + pokemon.imageUrl + '" >' + '<br>' +
       'height: ' + pokemon.height + ' inches'+'<br>' +
       'type: ' + pokemon.types ;
-      console.log(pokemon.name);
+      console.log(pokemon.name);*/
     });
   }
   /* I am confused why showDetails in line 29 has pokemon as a parameter and in line 39, item
   the function loads *loadDetails) the objects of the API data (item) that are dumped in the array pokemons
   the method .then*() 'normally 'returns a Promise (a callback function) - normally with error code / but where is the promise*/
+
+
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function() {
+    var $PokemonDiv = document.querySelector('div');
     $PokemonDiv.innerHTML = 'name: ' + item.name + '<br>' +
     '<img src="' + item.imageUrl + '" >' + '<br>' +
       'height: ' + item.height + ' inches'+'<br>' +
@@ -63,8 +66,7 @@ var pokemonRepository = (function() {
     is returned with the .json() method - here's the asynchronous function
     NO REAL CLUE WHAT IS REALLY GOING ON HERE - I WOULD HAVE TO CHECK
     THIS OUT ON MY OWN, LINE BY LINE, FOR 2 WEEKS AT LEAST*/
-    return fetch(apiUrl)
-      .then(function (response) {
+    return fetch(apiUrl).then(function (response) {
       return response.json();
     })
       .then(function (json) {
@@ -83,13 +85,11 @@ var pokemonRepository = (function() {
   // similar to lines 66-80, i.e. asynchronous function, get details from API
   function loadDetails(item) {
     var url = item.detailsUrl;
-    return fetch(url)
-      .then(function (response) {
+    return fetch(url).then(function (response) {
       return response.json();
       })
       .then(function (details) {
         // Now we add the details to the item
-        item.name = details.name;
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = Object.keys(details.types);
