@@ -1,10 +1,9 @@
-
 var pokemonRepository = (function() {
   var pokemons = [];
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
 
   function addListItem(item) {
-    showDetails(item);
+    //showDetails(item);
 
     var $ul = document.querySelector('ul');
     var $li = document.createElement('li');
@@ -16,7 +15,7 @@ var pokemonRepository = (function() {
     $li.appendChild($btn);
 
     $btn.addEventListener('click', function () {
-      showModal(item.name, item.imageUrl, item.height, item.types);
+      showDetails(item);
     });
   }
 

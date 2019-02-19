@@ -27,21 +27,39 @@ img {
   left: 20%;
   right: 20%;
   bottom: 20%;
+  z-index: 999;
+  overflow: auto;
+  display: grid;
+  text-align: center;
 }
 
-/* all settings of #modal-container are auto applied here if not overwritten */
 #modal-container.is-visible {
-  display: flex;
-  flex-direction: column;
   background-color : var(--font-color-lightgreen);
   color : var(--font-color-white);
-  padding : 10px;
-  margin : 10px;
-  border-radius : 8px;
-  border-width : 1px;
-  box-shadow : 2px 2px 3px 0px #000000;
-  transition : 0.5s;
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  overflow: auto;
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  color : var(--font-color-lightgrey);
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: var(--font-color-lightgreen);
+  padding: 15px;
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
 }
 
 .modal-header {
@@ -51,23 +69,12 @@ img {
   align-content: center;
 }
 
-.modal {
-  color : var(--font-color-lightgrey);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-
-}
-
 .modal-close {
-  display : flex;
-  justify-content: flex-end;
-  color : var(--font-color-lightgrey);
-  font-weight: lighter;
-  background-color : var(--font-color-lightgreen);
-  border-style: none;
-  cursor: pointer;
+  float: right;
+  border: 0;
+  background: none;
+  color: var(--font-color-lightgrey);
+  text-decoration: none;
 }
 
 #show-modal {
