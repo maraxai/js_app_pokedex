@@ -22,15 +22,6 @@ img {
 
 #modal-container {
   display : none;
-  position : fixed; /* allows to position the container on top of the other layers */
-  top: 20%;
-  left: 20%;
-  right: 20%;
-  bottom: 20%;
-  z-index: 999;
-  overflow: auto;
-  display: grid;
-  text-align: center;
 }
 
 #modal-container.is-visible {
