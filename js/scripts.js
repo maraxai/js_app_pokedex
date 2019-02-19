@@ -1,10 +1,12 @@
+// IIFE
 var pokemonRepository = (function() {
   var pokemons = [];
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
 
+  // API to pull pokemon data
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+  // DOM elements, list of buttons and button eventhandler
   function addListItem(item) {
-    //showDetails(item);
-
     var $ul = document.querySelector('ul');
     var $li = document.createElement('li');
     var $btn = document.createElement('button');
@@ -19,15 +21,15 @@ var pokemonRepository = (function() {
     });
   }
 
+  // loads detail data from array and displays them in the modal
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function() {
       showModal(item.name, item.imageUrl, item.height, item.types);
-      document.querySelector('#show-modal').addEventListener('click', (e) => {
-        showModal(item.name, item.imageUrl, item.height, item.types);
-      });
+
     });
   }
 
+  // DOM elements of the modal modal
   function showModal(name, image, height, types) {
     var $modalContainer = document.querySelector('#modal-container');
     $modalContainer.classList.add('is-visible');
@@ -63,6 +65,7 @@ var pokemonRepository = (function() {
     $modalContainer.appendChild(modal);
   }
 
+  // hides modal
   function hideModal() {
     var $modalContainer = document.querySelector('#modal-container');
     $modalContainer.classList.remove('is-visible');
@@ -78,7 +81,7 @@ var pokemonRepository = (function() {
     return pokemons;
   }
 
-  // function loads the API list -
+  // function loads the API list - promise, asynchronous function
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -127,6 +130,7 @@ var pokemonRepository = (function() {
       }
     });
 
+    // close modal by clicking somewhere in the modal container
     var $modalContainer = document.querySelector('#modal-container');
     $modalContainer.addEventListener('click', (e) => {
       var target = e.target;
@@ -135,6 +139,7 @@ var pokemonRepository = (function() {
       }
     });
 
+  // returns all functions
   return {
        add: add,
        getAll: getAll,
@@ -151,6 +156,7 @@ var pokemonRepository = (function() {
 })();
 //END OF IIFE
 
+// calls the data from within the IIFE 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
